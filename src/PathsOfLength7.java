@@ -48,70 +48,27 @@ public class PathsOfLength7 {
     }
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Graph graph = new Graph();
 
-        Graph g1 = new Graph();
-        g1.addEdge(0, 1, 1);
-        g1.addEdge(1, 2, 1);
-        g1.addEdge(2, 3, 1);
-        g1.addEdge(3, 4, 1);
-        g1.addEdge(4, 5, 1);
-        g1.addEdge(5, 6, 1);
-        g1.addEdge(6, 7, 1);
+        System.out.print("Enter number of edges: ");
+        int edgeCount = scanner.nextInt();
 
-        System.out.println("=== Test Case 1 ===");
-        g1.findPaths(0, 7);
+        System.out.println("Enter edges in the format: from to weight");
+        for (int i = 0; i < edgeCount; i++) {
+            int from = scanner.nextInt();
+            int to = scanner.nextInt();
+            int weight = scanner.nextInt();
+            graph.addEdge(from, to, weight);
+        }
 
-        Graph g2 = new Graph();
-        g2.addEdge(0, 1, 1);
-        g2.addEdge(1, 2, 1);
-        g2.addEdge(2, 3, 1);
+        System.out.print("Enter starting vertex (u): ");
+        int u = scanner.nextInt();
 
-        System.out.println("\n=== Test Case 2 ===");
-        g2.findPaths(0, 3);
+        System.out.print("Enter ending vertex (w): ");
+        int w = scanner.nextInt();
 
-        Graph g3 = new Graph();
-        g3.addEdge(0, 1, 1);
-        g3.addEdge(0, 2, 1);
-        g3.addEdge(1, 3, 1);
-        g3.addEdge(2, 3, 1);
-        g3.addEdge(3, 4, 1);
-        g3.addEdge(4, 5, 1);
-        g3.addEdge(5, 6, 1);
-        g3.addEdge(6, 7, 1);
-        g3.addEdge(1, 2, 1);
-        g3.addEdge(2, 4, 1);
-        g3.addEdge(4, 6, 1);
-        g3.addEdge(6, 3, 1); // cyclic option but should skip revisits
-
-        System.out.println("\n=== Test Case 3 ===");
-        g3.findPaths(0, 7);
-
-        Graph g4 = new Graph();
-        g4.addEdge(0, 1, 1);
-        g4.addEdge(1, 2, 1);
-        g4.addEdge(2, 3, 1);
-        g4.addEdge(3, 4, 1);
-        g4.addEdge(4, 5, 1);
-        g4.addEdge(5, 6, 1);
-        g4.addEdge(6, 7, 1);
-        g4.addEdge(7, 8, 1);
-
-        System.out.println("\n=== Test Case 4 ===");
-        g4.findPaths(0, 8); // This path has 8 edges, so it should not print
-
-        Graph g5 = new Graph();
-        g5.addEdge(0, 1, 1);
-        g5.addEdge(1, 2, 1);
-        g5.addEdge(2, 3, 1);
-        g5.addEdge(3, 1, 1); // cycle
-        g5.addEdge(3, 4, 1);
-        g5.addEdge(4, 5, 1);
-        g5.addEdge(5, 6, 1);
-        g5.addEdge(6, 7, 1);
-        g5.addEdge(7, 8, 1);
-
-        System.out.println("\n=== Test Case 5 ===");
-        g5.findPaths(0, 7);
-
+        System.out.println("\n=== Paths of length 7 from " + u + " to " + w + " ===");
+        graph.findPaths(u, w);
     }
 }
